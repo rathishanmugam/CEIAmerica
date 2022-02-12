@@ -58,6 +58,7 @@ userRouter.post('/', userSchema,validateRequestSchema,
         const payload:userMapper.CreateUserDTO = req.body
 
         const result = await userController.createOne(payload)
+        console.log('the created user is============>',result);
         return res.status(200).json({ result, msg: "Successfully created User" });
     } catch (error) {
         return res.status(500).json({ msg: error, status: 500, route: "/users" });

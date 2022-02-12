@@ -3,7 +3,7 @@ version: '3.8'
 services:
   node_backend:
     container_name: node_cei
-    image: node_cei:0.0.6
+    image: node_cei:0.0.1
     build:
       context: .
     ports:
