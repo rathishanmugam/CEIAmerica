@@ -1,12 +1,13 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
-import sequelize from './util/database';
+// import sequelize from './util/database';
 import userRoutes from './routes/users';
 import morgan from 'morgan';
 import swaggerUI from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
 import { createConnection } from "./db";
 import { options } from "./swaggerOptions";
+import dbInit from "./dbInit";
 
 const app: Application = express();
 
@@ -34,9 +35,10 @@ app.use("/docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 (async () =>{
     try {
-        await sequelize.sync(
-            {force: true}
-        );
+        // await sequelize.sync(
+        //     {force: true}
+        // );
+        await dbInit();
         await createConnection();
         console.log("test");
         app.listen(process.env.EXTERNAL_PORT || 3000);
