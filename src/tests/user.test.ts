@@ -38,7 +38,7 @@ describe(" create User ", () => {
         const res = await request(app).post("/users").send(user);
 
         expect(mockCreateUser).toHaveBeenCalledTimes(1);
-        expect(res.body.msg).toEqual({});
+        expect(res.body.msg).toEqual("Fail To Create User");
         expect(res.body.status).toEqual(500);
 
     });
@@ -78,7 +78,7 @@ describe("Read All User", () => {
         const res = await request(app).get("/users");
         expect(mockReadUser).toHaveBeenCalledTimes(1);
         expect(res.body.status).toEqual(500)
-        expect(res.body.msg).toEqual({})
+        expect(res.body.msg).toEqual("Fail To Get  Records")
 
     });
 });

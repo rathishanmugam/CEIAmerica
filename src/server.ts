@@ -41,7 +41,7 @@ app.use("/docs", swaggerUI.serve, swaggerUI.setup(specs));
         await dbInit();
         await createConnection();
         console.log("test");
-        app.listen(process.env.EXTERNAL_PORT || 3000);
+        app.listen(process.env.EXTERNAL_PORT || 8000);
     } catch (error) {
         console.error(error);
     }
