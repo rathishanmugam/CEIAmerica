@@ -10,4 +10,7 @@ const sequelize = new Sequelize(
     }
 )
 
+//  when using minikube to run
+// const sequelize = new Sequelize(process.env.POSTGRES_HOST || '')
+
 export default sequelize;

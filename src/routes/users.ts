@@ -10,7 +10,7 @@ userRouter.get('/',
     async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await userController.getAll()
-        return res.status(200).send({ result, msg: "Successfully Got All Users" });
+        return res.status(200).json({ result, status: 200, msg: "Successfully Got All Users" });
     } catch (error) {
         return res.status(500).json({ msg: 'Fail To Get  Records', status: 500, route: "/users" });
     }
@@ -21,7 +21,7 @@ userRouter.get('/:id',
    try {
        const id = Number(req.params.id)
        const result = await userController.getOne(id)
-       return res.status(200).json({ result, msg: "Successfully Got user" });
+       return res.status(200).json({ result, status: 200, msg: "Successfully Got user" });
    } catch (error) {
        return res.status(404).json({ msg: 'User was not found', status: 404, route: `/users/${req.params.id}` });
    }
@@ -33,7 +33,7 @@ userRouter.delete('/:id',
         const id = Number(req.params.id)
         const result = await userController.deleteOne(id)
         if(result)
-        return res.status(200).json({ count:result, msg: "Successfully deleted User" });
+        return res.status(200).json({ count:result, status: 200, msg: "Successfully deleted User" });
     } catch (error) {
         return res.status(404).json({ msg: 'Fail To Delete User,Check For User Exists', status: 404, route: `/users/${req.params.id}` });
     }
@@ -46,7 +46,7 @@ userRouter.put('/:id',userSchema,validateRequestSchema,
         const payload:userMapper.UpdateUserDTO = req.body
 
         const result = await userController.updateOne(id,payload)
-        return res.status(200).json({ result, msg: "Successfully Updated User" });
+        return res.status(200).json({ result, status: 200, msg: "Successfully Updated User" });
     } catch (e) {
         return res.status(404).json({ msg: 'Fail To Update User, Check For User Exists', status: 404, route: `/users/${req.params.id}` });
     }
@@ -59,9 +59,9 @@ userRouter.post('/', userSchema,validateRequestSchema,
 
         const result = await userController.createOne(payload)
         console.log('the created user is============>',result);
-        return res.status(200).json({ result, msg: "Successfully created User" });
+        return res.status(200).json({ result, status: 200, msg: "Successfully created User" });
     } catch (error) {
-        return res.status(500).json({ msg: 'Fail To Create User', status: 500, route: "/users" });
+        return res.status(400).json({ msg: 'Bad Request,Fail To Create User', status: 400, route: "/users" });
     }
 })
 export default userRouter;
