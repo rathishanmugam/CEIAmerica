@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+#  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - image: react-cei:0.0.1
+          name: client
+          imagePullPolicy: Never
+          env:
+            - name: API_KEY
+              value: http://192.168.64.5:30069
+          ports:
+            - containerPort: 3000
+

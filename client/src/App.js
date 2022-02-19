@@ -5,6 +5,7 @@ import {getUser} from './actions/user'
 import User from "./user";
 import {Routes, Route} from 'react-router-dom';
 import ManageUser from "./manageUser";
+import {toast} from "react-toastify";
 
 function App() {
     const dispatch = useDispatch();
@@ -13,7 +14,12 @@ function App() {
         getData();
     }, [dispatch])
     const getData = async () => {
-        await dispatch(getUser());
+        try {
+            await dispatch(getUser());
+        }catch (e){
+            toast.error(e?.statusText, {autoClose: 1000, hideProgressBar: true})
+
+        }
     }
     return (
         <>

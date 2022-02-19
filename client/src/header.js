@@ -13,7 +13,7 @@ const Header = ({headers, onSorting}) => {
         setSortingOrder(order);
         onSorting(field, order);
     };
-    console.log('the headers====>', headers);
+    // console.log('the headers====>', headers);
     return (
         <thead>
         <tr>
