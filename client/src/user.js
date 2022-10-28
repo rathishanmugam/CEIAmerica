@@ -8,7 +8,7 @@ import "./icons";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, removeUser} from './actions/user'
 import {useNavigate} from "react-router-dom";
-import useLoader from "./useLoader";
+import useLoader from "./hooks/useLoader";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useDebounce from "./hooks/useDebounce";
